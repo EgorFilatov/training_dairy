@@ -1,0 +1,23 @@
+{% for el in program %}
+  <div class="col-lg-6">
+    <article class="d-flex flex-column">
+      <h2 class="title">
+        <a href="{% url 'weeks_list' %}">{{ el.program_name }}</a>
+      </h2>
+      <div class="meta-top">
+        <ul>
+          <li class="d-flex align-items-center"><i class="bi bi-clock"></i><a href="{% url 'weeks_list' %}"><time>{{ el.updated_at }}</time></a></li>
+          {% if el.program_finished %}
+            <li class="d-flex align-items-center"><i class="bi bi-check-circle"></i> <a href="{% url 'weeks_list' %}">Завершена</a></li>
+          {% else %}
+            <li class="d-flex align-items-center"><i class="bi bi-play-circle"></i> <a href="{% url 'weeks_list' %}">В процессе</a></li>
+          {% endif %}
+        </ul>
+        <div class="content">
+          <p>{{ el.program_description }}</p>
+        </div>
+      </div>
+    </article>
+  </div>
+{% endfor %}
+

@@ -1,0 +1,19 @@
+{% for el in week %}
+  <div class="col-lg-6">
+    <article class="d-flex flex-column">
+      <h2 class="title">
+        <a href="{% url 'weeks_list' %}">{{ el.name_of_week }}</a>
+      </h2>
+      <div class="meta-top">
+        <ul>
+          {% if el.program_finished %}
+            <li class="d-flex align-items-center"><i class="bi bi-check-circle"></i> <a href="{% url 'weeks_list' %}">Завершена</a></li>
+          {% else %}
+            <li class="d-flex align-items-center"><i class="bi bi-play-circle"></i> <a href="{% url 'weeks_list' %}">В процессе</a></li>
+          {% endif %}
+        </ul>
+      </div>
+    </article>
+  </div>
+{% endfor %}
+
