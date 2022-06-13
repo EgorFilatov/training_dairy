@@ -11,7 +11,7 @@ class Programs(models.Model):
     program_finished = models.BooleanField(default=False)
 
     def get_absolute_url(self):
-        return reverse_lazy('my_programs', kwargs={'pk': self.pk})
+        return reverse_lazy('weeks_list', kwargs={'pk': self.pk})
 
     def __str__(self):
         return self.program_name

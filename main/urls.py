@@ -5,5 +5,5 @@ from .views import ProgramsList, WeeksList
 
 urlpatterns = [
     path('', ProgramsList.as_view(), name='my_programs'),
-    path('weeks_list', WeeksList.as_view(), name='weeks_list'),
+    path('weeks_list/<int:pk>/', views.weeks_list, name='weeks_list'),
 ]
