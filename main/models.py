@@ -8,7 +8,7 @@ class Programs(models.Model):
     created_at = models.DateTimeField(verbose_name='Дата создания', auto_now_add=True)
     updated_at = models.DateTimeField(verbose_name='Дата редактирования', auto_now=True)
     training_weeks = models.ManyToManyField('Weeks', verbose_name='Тренировочные недели')
-    program_finished = models.BooleanField(default=False)
+    program_finished = models.BooleanField(default=False, verbose_name='Программа завершена')
 
     def get_absolute_url(self):
         return reverse_lazy('weeks_list', kwargs={'pk': self.pk})
@@ -24,10 +24,10 @@ class Programs(models.Model):
 class Weeks(models.Model):
     name_of_week = models.CharField(verbose_name='Название недели', max_length=50)
     training_days = models.ManyToManyField('Days', verbose_name='Тренировочные дни')
-    week_finished = models.BooleanField(default=False)
+    week_finished = models.BooleanField(default=False, verbose_name='Неделя завершена')
 
     def get_absolute_url(self):
-        return reverse_lazy('weeks_list', kwargs={'pk': self.pk})
+        return reverse_lazy('days_list', kwargs={'pk': self.pk})
 
     def __str__(self):
         return self.name_of_week
@@ -39,9 +39,12 @@ class Weeks(models.Model):
 
 class Days(models.Model):
     name_of_day = models.CharField(verbose_name='Название дня', max_length=50)
-    exercise = models.ManyToManyField('Exercises', verbose_name='Упражнения')
-    exercise_characteristics = models.ManyToManyField('ExerciseCharacteristics', verbose_name='Характеристики упражнений')
-    day_finished = models.BooleanField(default=False)
+    exercises = models.ManyToManyField('Exercises', verbose_name='Упражнения')
+    exercises_characteristics = models.ManyToManyField('ExerciseCharacteristics', verbose_name='Характеристики упражнений')
+    day_finished = models.BooleanField(default=False, verbose_name='День завершен')
+
+    def get_absolute_url(self):
+        return reverse_lazy('exercises_list', kwargs={'pk': self.pk})
 
     def __str__(self):
         return self.name_of_day
@@ -56,7 +59,7 @@ class Exercises(models.Model):
     exercise_description = models.TextField(blank=True, null=True, verbose_name='Описание упражнения')
     image = models.ImageField(verbose_name='Изображение', blank=True, null=True, upload_to='media/img/exercise_img/%Y/%m/%d/')
     exercise_link = models.CharField(verbose_name='Ссылка на упражнение', max_length=250)
-    exercise_finished = models.BooleanField(default=False)
+    exercise_finished = models.BooleanField(default=False, verbose_name='Упражнение завершено')
 
     def __str__(self):
         return self.exercise_name

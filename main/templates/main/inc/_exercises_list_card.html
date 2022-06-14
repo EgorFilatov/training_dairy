@@ -1,0 +1,18 @@
+{% for el in days %}
+  <div class="col-lg-6">
+    <article class="d-flex flex-column">
+      <h2 class="title">
+        <a href="{% url 'my_programs' %}">{{ el.exercise_name }}</a>
+      </h2>
+      <div class="meta-top">
+        <ul>
+          {% if el.exercise_finished %}
+            <li class="d-flex align-items-center"><i class="bi bi-check-circle"></i> <a href="{% url 'my_programs' %}">Завершен</a></li>
+          {% else %}
+            <li class="d-flex align-items-center"><i class="bi bi-play-circle"></i> <a href="{% url 'my_programs' %}">В процессе</a></li>
+          {% endif %}
+        </ul>
+      </div>
+    </article>
+  </div>
+{% endfor %}

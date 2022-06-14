@@ -1,13 +1,13 @@
-{% for el in weeks %}
+{% for el in days %}
   <div class="col-lg-6">
     <article class="d-flex flex-column">
       <h2 class="title">
-        <a href="{{ el.get_absolute_url }}">{{ el.name_of_week }}</a>
+        <a href="{{ el.get_absolute_url }}">{{ el.name_of_day }}</a>
       </h2>
       <div class="meta-top">
         <ul>
-          {% if el.week_finished %}
-            <li class="d-flex align-items-center"><i class="bi bi-check-circle"></i> <a href="{{ el.get_absolute_url }}">Завершена</a></li>
+          {% if el.day_finished %}
+            <li class="d-flex align-items-center"><i class="bi bi-check-circle"></i> <a href="{{ el.get_absolute_url }}">Завершен</a></li>
           {% else %}
             <li class="d-flex align-items-center"><i class="bi bi-play-circle"></i> <a href="{{ el.get_absolute_url }}">В процессе</a></li>
           {% endif %}
