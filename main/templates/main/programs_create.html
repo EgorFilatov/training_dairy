@@ -1,0 +1,10 @@
+{% extends 'main/base.html' %}
+{% block main %}
+  {% include 'main/inc/_breadcrumbs.html' %}
+  <section id="blog" class="blog">
+    <div class="container" data-aos="fade-up">
+        {% include 'main/inc/_programs_create_form.html' %}
+        {% include 'main/inc/_pagination.html' %}
+    </div>
+  </section>
+{% endblock %}
