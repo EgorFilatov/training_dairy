@@ -3,7 +3,7 @@ from django.core.paginator import Paginator
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from .import urls
-from .forms import ProgramsForm
+from .forms import ProgramsForm, WeeksDaysChoiceForm
 from .models import Programs, Weeks, Days
 
 
@@ -39,8 +39,21 @@ def exercises_list(request, pk):
     return render(request, 'main/exercises_list.html', {'exercises': exercises, })
 
 
-class ProgramsCreate(CreateView):
-    form_class = ProgramsForm
-    template_name = 'main/programs_create.html'
-    success_url = reverse_lazy('my_programs')
+#class ProgramsCreate(CreateView):
+#    form_class = ProgramsForm
+#    template_name = 'main/programs_create.html'
+#    success_url = reverse_lazy('my_programs')
 
+
+def programs_create(request):
+    programs_form = ProgramsForm
+    cleaned_data = {}
+    if request.method == 'POST':
+        form = WeeksDaysChoiceForm(request.POST)
+        if form.is_valid():
+            cleaned_data = form.cleaned_data
+            print(form.cleaned_data)
+    else:
+        form = WeeksDaysChoiceForm()
+
+    return render(request, 'main/programs_create.html', {'form': form, 'cleaned_data': cleaned_data, 'programs_form': programs_form})

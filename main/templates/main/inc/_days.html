@@ -1,62 +1,223 @@
-<!-- ======= Works Section ======= -->
-    <section class="section training_dairy">
-      <div class="row mb-5 align-items-center">
-          <div class="col-md-12 col-lg-6 mb-4 mb-lg-0" data-aos="fade-up">
-            <h2>Неделя 3</h2>
-            <p class="mb-0">День 1</p>
-          </div>
-          <div class="col-md-12 col-lg-6 text-start text-lg-end" data-aos="fade-up" data-aos-delay="100">
-            <div id="filters" class="filters">
-              <a href="#" data-filter="*" class="active">День 1</a>
-              <a href="#" data-filter=".web">День 2</a>
-              <a href="#" data-filter=".design">День 3</a>
-            </div>
-          </div>
-        </div>
+<form method="post" enctype="multipart/form-data" id="contactForm">
+    {% csrf_token %}
+    <label for="{{ form.program_name.id_for_label }}">Название программы</label>
+    {{ form.program_name }}
+    {{ form.program_name.errors }}
+     <br/>
 
-      <table class="table table-hover">
-        <thead>
-          <tr class="table-dark">
+    <label for="{{ form.program_description.id_for_label }}">Описание программы</label>
+    {{ form.program_description }}
+    {{ form.program_description.errors }}
+     <br/>
+</form>
+
+<h5>Количество недель в программе:</h5>
+<select class="form-select" aria-label="Default select example">
+    <option selected>1</option>
+    <option value="1">2</option>
+    <option value="2">3</option>
+    <option value="3">4</option>
+</select>
+
+<h5>Количество дней в программе:</h5>
+<select class="form-select" aria-label="Default select example">
+    <option selected>1</option>
+    <option value="1">2</option>
+    <option value="2">3</option>
+    <option value="3">4</option>
+</select>
+
+
+
+
+
+
+<div class="row align-items-center">
+    <div class="col-md-12 col-lg-6 mb-4 mb-lg-0" data-aos="fade-up"><h2>Неделя 1</h2></div>
+</div>
+
+<table class="table table-bordered">
+    <thead>
+        <tr class="table-dark">
             <th scope="col">Упражнение</th>
+            <th scope="col">РМ</th>
             <th scope="col">Вес</th>
+            <th scope="col">% от РМ</th>
             <th scope="col">Повт-я</th>
             <th scope="col">Подх.</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <th scope="row">Румынская тяга</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr>
+            <th scope="row">
+                <select class="form-select" aria-label="Default select example">
+                  <option selected>Жим</option>
+                  <option value="1">Бицепс</option>
+                  <option value="2">Тяга</option>
+                  <option value="3">Присед</option>
+                </select>
+            </th>
+            <td><input class="form-control" placeholder="Введите РМ"></td>
+            <td><input class="form-control" placeholder="Введите Вес"></td>
             <td>20</td>
-            <td>10</td>
-            <td>3</td>
-          </tr>
-          <tr class="table-danger">
-            <th scope="row">Тяга штанги в наклоне</th>
-            <td>70</td>
-            <td>10</td>
-            <td>3</td>
-          </tr>
-          <tr class="table-warning">
-            <th scope="row">Жим лежа узким хватом</th>
-            <td>40</td>
-            <td>10</td>
-            <td>2</td>
-          </tr>
-          <tr class="table-warning">
-            <th scope="row">Подтягивания</th>
-            <td>5</td>
-            <td>10</td>
-            <td>2</td>
-          </tr>
-          <tr class="table-success">
-            <th scope="row">Жим лежа</th>
-            <td>40</td>
-            <td>10</td>
-            <td>2</td>
-          </tr>
-        </tbody>
-      </table>
-    </section><!-- End  Works Section -->
+            <td scope="row">
+                <select class="form-select" aria-label="Default select example">
+                  <option selected>1</option>
+                  <option value="1">2</option>
+                  <option value="2">3</option>
+                  <option value="3">4</option>
+                </select>
+            </td>
+            <td scope="row">
+                <select class="form-select" aria-label="Default select example">
+                  <option selected>1</option>
+                  <option value="1">2</option>
+                  <option value="2">3</option>
+                  <option value="3">4</option>
+                </select>
+            </td>
+        </tr>
+
+        <tr class="table-danger">
+            <th scope="row">
+                <select class="form-select" aria-label="Default select example">
+                  <option selected>Жим</option>
+                  <option value="1">Бицепс</option>
+                  <option value="2">Тяга</option>
+                  <option value="3">Присед</option>
+                </select>
+            </th>
+            <td><input class="form-control" placeholder="Введите РМ"></td>
+            <td><input class="form-control" placeholder="Введите Вес"></td>
+            <td>20</td>
+            <td scope="row">
+                <select class="form-select" aria-label="Default select example">
+                  <option selected>1</option>
+                  <option value="1">2</option>
+                  <option value="2">3</option>
+                  <option value="3">4</option>
+                </select>
+            </td>
+            <td scope="row">
+                <select class="form-select" aria-label="Default select example">
+                  <option selected>1</option>
+                  <option value="1">2</option>
+                  <option value="2">3</option>
+                  <option value="3">4</option>
+                </select>
+            </td>
+        </tr>
+        <tr class="table-warning">
+            <th scope="row">
+                <select class="form-select" aria-label="Default select example">
+                  <option selected>Жим</option>
+                  <option value="1">Бицепс</option>
+                  <option value="2">Тяга</option>
+                  <option value="3">Присед</option>
+                </select>
+            </th>
+            <td><input class="form-control" placeholder="Введите РМ"></td>
+            <td><input class="form-control" placeholder="Введите Вес"></td>
+            <td>20</td>
+            <td scope="row">
+                <select class="form-select" aria-label="Default select example">
+                  <option selected>1</option>
+                  <option value="1">2</option>
+                  <option value="2">3</option>
+                  <option value="3">4</option>
+                </select>
+            </td>
+            <td scope="row">
+                <select class="form-select" aria-label="Default select example">
+                  <option selected>1</option>
+                  <option value="1">2</option>
+                  <option value="2">3</option>
+                  <option value="3">4</option>
+                </select>
+            </td>
+        </tr>
+        <tr class="table-warning">
+            <th scope="row">
+                <select class="form-select" aria-label="Default select example">
+                  <option selected>Жим</option>
+                  <option value="1">Бицепс</option>
+                  <option value="2">Тяга</option>
+                  <option value="3">Присед</option>
+                </select>
+            </th>
+            <td><input class="form-control" placeholder="Введите РМ"></td>
+            <td><input class="form-control" placeholder="Введите Вес"></td>
+            <td>20</td>
+            <td scope="row">
+                <select class="form-select" aria-label="Default select example">
+                  <option selected>1</option>
+                  <option value="1">2</option>
+                  <option value="2">3</option>
+                  <option value="3">4</option>
+                </select>
+            </td>
+            <td scope="row">
+                <select class="form-select" aria-label="Default select example">
+                  <option selected>1</option>
+                  <option value="1">2</option>
+                  <option value="2">3</option>
+                  <option value="3">4</option>
+                </select>
+            </td>
+        </tr>
+        <tr class="table-success">
+            <th scope="row">
+                <select class="form-select" aria-label="Default select example">
+                  <option selected>Жим</option>
+                  <option value="1">Бицепс</option>
+                  <option value="2">Тяга</option>
+                  <option value="3">Присед</option>
+                </select>
+            </th>
+            <td><input class="form-control" placeholder="Введите РМ"></td>
+            <td><input class="form-control" placeholder="Введите Вес"></td>
+            <td>20</td>
+            <td scope="row">
+                <select class="form-select" aria-label="Default select example">
+                  <option selected>1</option>
+                  <option value="1">2</option>
+                  <option value="2">3</option>
+                  <option value="3">4</option>
+                </select>
+            </td>
+            <td scope="row">
+                <select class="form-select" aria-label="Default select example">
+                  <option selected>1</option>
+                  <option value="1">2</option>
+                  <option value="2">3</option>
+                  <option value="3">4</option>
+                </select>
+            </td>
+        </tr>
+    </tbody>
+</table>
 
 
-  </main><!-- End #main -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="text-center">
+    <button class="btn btn-light" type="submit">Сгенерировать программу</button>
+    <button class="btn btn-light" type="submit">Сохранить программу</button>
+</div>
