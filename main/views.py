@@ -1,9 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.core.paginator import Paginator
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from .import urls
-from .forms import ProgramsForm, WeeksDaysChoiceForm
+from .forms import ProgramsForm, WeeksChoiceForm
 from .models import Programs, Weeks, Days
 
 
@@ -45,15 +45,32 @@ def exercises_list(request, pk):
 #    success_url = reverse_lazy('my_programs')
 
 
-def programs_create(request):
-    programs_form = ProgramsForm
-    cleaned_data = {}
+def programs_create_1(request):
     if request.method == 'POST':
-        form = WeeksDaysChoiceForm(request.POST)
-        if form.is_valid():
-            cleaned_data = form.cleaned_data
-            print(form.cleaned_data)
+        programs_form = ProgramsForm(request.POST)
+        weeks_choice_form = WeeksChoiceForm(request.POST)
+        if programs_form.is_valid() and weeks_choice_form.is_valid():
+            try:
+                programs_form.save()
+                Weeks.objects.create()
+            except:
+                programs_form.add_error(None, 'Ошибка добавления поста')
     else:
-        form = WeeksDaysChoiceForm()
+        programs_form = ProgramsForm()
+        weeks_choice_form = WeeksChoiceForm()
 
-    return render(request, 'main/programs_create.html', {'form': form, 'cleaned_data': cleaned_data, 'programs_form': programs_form})
+    return render(request, 'main/programs_create.html', {'programs_form': programs_form, 'weeks_choice_form': weeks_choice_form})
+
+
+def programs_create(request):
+    if request.method == 'POST':
+        programs_form = ProgramsForm(request.POST)
+        weeks_choice_form = WeeksChoiceForm(request.POST)
+        if programs_form.is_valid() :
+            print(programs_form.cleaned_data)
+            #programs_form.save()
+            #Weeks.objects.create()
+        else:
+            programs_form = ProgramsForm()
+            weeks_choice_form = WeeksChoiceForm()
+        return render(request, 'main/programs_create.html', {'programs_form': programs_form, 'weeks_choice_form': weeks_choice_form})

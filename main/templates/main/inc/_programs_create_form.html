@@ -1,52 +1,13 @@
-<form name='weeks_days_choice_form' method="post" enctype="multipart/form-data">
+<form name='programs_form' method="post" enctype="multipart/form-data">
     {% csrf_token %}
-    {{programs_form}}
+    {{programs_form.as_p}}
 </form>
 
-<form name='weeks_days_choice_form' method="post" enctype="multipart/form-data">
+<form name='weeks_choice_form' method="post" enctype="multipart/form-data">
     {% csrf_token %}
-    {{ form.as_p }}
-    {{ cleaned_data.days }}
-    {{ cleaned_data.weeks }}
-
+    {{ weeks_choice_form.as_p }}
 </form>
-
-
-<div class="list-group list-group-horizontal">
-    <a href="#" class="list-group-item active">День 1</a>
-    <a href="#" class="list-group-item">День 2</a>
-    <a href="#" class="list-group-item">День 3</a>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 <div class="text-center">
-    <button class="btn btn-light" type="submit">Сгенерировать программу</button>
-    <button class="btn btn-light" type="submit">Сохранить программу</button>
+    <button class="btn btn-light" type="submit">Далее</button>
 </div>

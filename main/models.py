@@ -7,8 +7,8 @@ class Programs(models.Model):
     program_description = models.TextField(blank=True, null=True, verbose_name='Описание тренировочной программы')
     created_at = models.DateTimeField(verbose_name='Дата создания', auto_now_add=True)
     updated_at = models.DateTimeField(verbose_name='Дата редактирования', auto_now=True)
-    training_weeks = models.ManyToManyField('Weeks', verbose_name='Тренировочные недели')
-    program_finished = models.BooleanField(default=False, verbose_name='Программа завершена')
+    training_weeks = models.ManyToManyField('Weeks', verbose_name='Тренировочные недели', blank=True, null=True)
+    program_finished = models.BooleanField(default=False, verbose_name='Программа завершена', blank=True, null=True)
 
     def get_absolute_url(self):
         return reverse_lazy('weeks_list', kwargs={'pk': self.pk})
@@ -23,8 +23,8 @@ class Programs(models.Model):
 
 class Weeks(models.Model):
     name_of_week = models.CharField(verbose_name='Название недели', max_length=50)
-    training_days = models.ManyToManyField('Days', verbose_name='Тренировочные дни')
     week_finished = models.BooleanField(default=False, verbose_name='Неделя завершена')
+    training_days = models.ManyToManyField('Days', verbose_name='Тренировочные дни', blank=True, null=True)
 
     def get_absolute_url(self):
         return reverse_lazy('days_list', kwargs={'pk': self.pk})
@@ -39,9 +39,9 @@ class Weeks(models.Model):
 
 class Days(models.Model):
     name_of_day = models.CharField(verbose_name='Название дня', max_length=50)
-    exercises = models.ManyToManyField('Exercises', verbose_name='Упражнения')
-    exercises_characteristics = models.ManyToManyField('ExerciseCharacteristics', verbose_name='Характеристики упражнений')
     day_finished = models.BooleanField(default=False, verbose_name='День завершен')
+    exercises = models.ManyToManyField('Exercises', verbose_name='Упражнения', blank=True, null=True)
+    exercises_characteristics = models.ManyToManyField('ExerciseCharacteristics', verbose_name='Характеристики упражнений', blank=True, null=True)
 
     def get_absolute_url(self):
         return reverse_lazy('exercises_list', kwargs={'pk': self.pk})
@@ -58,8 +58,8 @@ class Exercises(models.Model):
     exercise_name = models.CharField(verbose_name='Название упражнения', max_length=250)
     exercise_description = models.TextField(blank=True, null=True, verbose_name='Описание упражнения')
     image = models.ImageField(verbose_name='Изображение', blank=True, null=True, upload_to='media/img/exercise_img/%Y/%m/%d/')
-    exercise_link = models.CharField(verbose_name='Ссылка на упражнение', max_length=250)
-    exercise_finished = models.BooleanField(default=False, verbose_name='Упражнение завершено')
+    exercise_link = models.CharField(verbose_name='Ссылка на упражнение', max_length=250, blank=True, null=True)
+    exercise_finished = models.BooleanField(default=False, verbose_name='Упражнение завершено', blank=True, null=True)
 
     def __str__(self):
         return self.exercise_name
@@ -77,10 +77,10 @@ class ExerciseCharacteristics(models.Model):
         ('25', '25'), ('26', '26'), ('27', '27'), ('28', '28'), ('29', '29'), ('30', '30'), ('31', '31'), ('32', '32'),
         ('33', '33'), ('34', '34'), ('35', '35'), ('36', '36'), ('37', '37'), ('38', '38'), ('39', '39'), ('40', '40'),
     ]
-    reps = models.CharField(verbose_name='Повторения', max_length=2, choices=CHOICES, default='0')
-    sets = models.CharField(verbose_name='Подходы', max_length=2, choices=CHOICES[0:11], default='0')
+    reps = models.CharField(verbose_name='Повторения', max_length=2, choices=CHOICES, default='0', blank=True, null=True)
+    sets = models.CharField(verbose_name='Подходы', max_length=2, choices=CHOICES[0:11], default='0', blank=True, null=True)
     weight = models.CharField(blank=True, null=True, verbose_name='Вес', max_length=50)
-    difficulty_rating = models.CharField(verbose_name='Оценка сложности', max_length=2, choices=CHOICES[0:11], default='0')
+    difficulty_rating = models.CharField(verbose_name='Оценка сложности', max_length=2, choices=CHOICES[0:11], default='0', blank=True, null=True)
     comments = models.TextField(blank=True, null=True, verbose_name='Комментарии')
 
     def get_absolute_url(self):

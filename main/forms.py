@@ -12,7 +12,7 @@ class ProgramsForm(forms.ModelForm):
             'program_description': forms.Textarea(attrs={'class': 'form-control'}), }
             #'training_weeks': forms.SelectMultiple(attrs={'class': 'form-control'}),
 
-class WeeksDaysChoiceForm(forms.Form):
+class WeeksChoiceForm(forms.Form):
     CHOICES = [
         ('0', '0'), ('1', '1'), ('2', '2'), ('3', '3'), ('4', '4'), ('5', '5'), ('6', '6'), ('7', '7'), ('8', '8'),
         ('9', '9'), ('10', '10'), ('11', '11'), ('12', '12'), ('13', '13'), ('14', '14'), ('15', '15'), ('16', '16'),
@@ -20,7 +20,8 @@ class WeeksDaysChoiceForm(forms.Form):
         ('25', '25'), ('26', '26'), ('27', '27'), ('28', '28'), ('29', '29'), ('30', '30'), ('31', '31'), ('32', '32'),
         ('33', '33'), ('34', '34'), ('35', '35'), ('36', '36'), ('37', '37'), ('38', '38'), ('39', '39'), ('40', '40'),
     ]
-    weeks = forms.ChoiceField(widget=forms.Select(attrs={'class': 'form-control', 'onchange': 'form.submit();'}), choices=CHOICES, label='Количество недель в программе')
-    days = forms.ChoiceField(widget=forms.Select(attrs={'class': 'form-control', 'onchange': 'form.submit();'}), choices=CHOICES, label='Количество тренировок в неделю')
+    # 'onchange': 'form.submit();' для автоматического submit формы, form. - параметр name формы
+    weeks = forms.ChoiceField(widget=forms.Select(attrs={'class': 'form-control', }), choices=CHOICES, label='Количество недель в программе')
+
 
 
